@@ -4,9 +4,14 @@ Manager to read and log temperature and humidity from a variety of sensors
 using the WemoS shields and then displays the results using Google Charts. Any
 ESP8266 can be used.
 
-The unit is totally self-contained and apart from google
-charts and therefore requires no other access to external sites like MQTT or
-Thingspeak.
+There are four versions so-far using:
+1. BOSCH BME280 to display temperature, humidity, dewpoint and pressure
+2. SHT30-D to display temperature, humidity, dewpoint
+3. DHT22 to display temperature, humidity, dewpoint
+4. DHT11 to display temperature, humidity, dewpoint
+
+The design gives a totally self-contained and apart from google charts, it requires no other 
+access to external sites like MQTT or Thingspeak.
 
 Data is recorded to an SD-Card if fitted. It recovers data
 from the SD-Card in the event of power failure or a restart and does this contiguously.
