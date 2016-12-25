@@ -30,5 +30,5 @@ ESP8266 server functions.  Some functions
 may seem superfluous but they are not. Any adjustment of the HTML code or attributes
 other than simple colour or font size changes is likely to make the code
 non-operational.
-
+I have noticed, but can't explain why, that Google Charts sometimes can and can't cope with large amounts of data for plotting, so I have reduced the amount of data sent for graphing by 2, so step size is now +2. This appears to improve graphing reliability.
 
