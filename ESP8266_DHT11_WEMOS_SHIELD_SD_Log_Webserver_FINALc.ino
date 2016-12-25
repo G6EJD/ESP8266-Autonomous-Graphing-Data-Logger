@@ -240,7 +240,7 @@ void display_temp_and_humidity() { // Processes a clients request for a graph of
   webpage += "function drawChart() {";
    webpage += "var data = google.visualization.arrayToDataTable(";
    webpage += "[['Reading','Temperature','Humidity'],";    
-   for (int i = 0; i < index_ptr; i++) {
+   for (int i = 0; i <= index_ptr; i=i+2) {
      webpage += "[" + String(i) + "," + String(float(sensor_data[i].temp)/10,1) + "," + String(float(sensor_data[i].humi)/1000,2) + "],"; 
    }
    webpage += "]);";
@@ -263,7 +263,7 @@ void display_temp_and_humidity() { // Processes a clients request for a graph of
     webpage += "var chart = new google.visualization.LineChart(document.getElementById('line_chart'));chart.draw(data, options);";
   webpage += "}";
   webpage += "</script>";
-  webpage += "<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=yes'>";
+  //webpage += "<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=yes'>";
   webpage += "<div id=\"line_chart\" style=\"width:1020px; height:500px\"></div>";
 //-----------------------------------
   append_page_footer();
@@ -291,7 +291,7 @@ void display_temp_and_dewpoint() { // Processes a clients request for a graph of
   webpage += "function drawChart() {";
    webpage += "var data = google.visualization.arrayToDataTable(";
    webpage += "[['Reading','Temperature','Dew Point'],";    
-   for (int i = 0; i < index_ptr; i++) {
+   for (int i = 0; i <= index_ptr; i=i+2) {
      if isnan(Calc_DewPoint(sensor_data[i].temp/10,sensor_data[i].humi/10)) dew_point = 0; else dew_point = Calc_DewPoint(sensor_data[i].temp/10,sensor_data[i].humi/10);
      webpage += "[" + String(i) + "," + String(float(sensor_data[i].temp)/10,1) + "," + String(dew_point,1) + "],"; 
    }
@@ -311,7 +311,7 @@ void display_temp_and_dewpoint() { // Processes a clients request for a graph of
     webpage += "var chart = new google.visualization.LineChart(document.getElementById('line_chart'));chart.draw(data, options);";
   webpage += "}";
   webpage += "</script>";
-  webpage += "<meta name='viewport' content='width=device-width,initial-scale=1.0,user-scalable=yes'>";
+  //webpage += "<meta name='viewport' content='width=device-width,initial-scale=1.0,user-scalable=yes'>";
   webpage += "<div id=\"line_chart\" style=\"width:1020px; height:500px\"></div>";
 //-----------------------------------
   append_page_footer();
