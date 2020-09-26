@@ -234,11 +234,11 @@ void display_temp_and_humidity() { // Processes a clients request for a graph of
   log_delete_approved = false; // Prevent accidental SD-Card deletion
   webpage = ""; // don't delete this command, it ensures the server works reliably!
   append_page_header();
-  //https://developers.google.com/loader/ // https://developers.google.com/chart/interactive/docs/basic_load_libs
-  // https://developers.google.com/chart/interactive/docs/basic_preparing_data
-  // https://developers.google.com/chart/interactive/docs/reference#google.visualization.arraytodatatable and See appendix-A
-  // data format is: [field-name,field-name,field-name] then [data,data,data], e.g. [12, 20.5, 70.3]
-  webpage += "<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}\"></script>";
+  //############### New API call needed
+  webpage += F("<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}/\"></script>");
+  webpage += F("<script type=\"text/javascript\">");
+  webpage += F("google.charts.load('current', {packages: ['corechart', 'line']});");
+  //###############
   webpage += "<script type=\"text/javascript\"> google.setOnLoadCallback(drawChart);";
   webpage += "function drawChart() {";
    webpage += "var data = google.visualization.arrayToDataTable(";
@@ -285,11 +285,11 @@ void display_temp_and_dewpoint() { // Processes a clients request for a graph of
   log_delete_approved = false; // PRevent accidental SD-Card deletion
   webpage = ""; // don't delete this command, it ensures the server works reliably!
   append_page_header();
-  // https://developers.google.com/loader/ // https://developers.google.com/chart/interactive/docs/basic_load_libs
-  // https://developers.google.com/chart/interactive/docs/basic_preparing_data
-  // https://developers.google.com/chart/interactive/docs/reference#google.visualization.arraytodatatable and See appendix-A
-  // data format is: [field-name,field-name,field-name] then [data,data,data], e.g. [12, 20.5, 70.3]
-  webpage += "<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}/\"></script>";
+  //############### New API call needed
+  webpage += F("<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}/\"></script>");
+  webpage += F("<script type=\"text/javascript\">");
+  webpage += F("google.charts.load('current', {packages: ['corechart', 'line']});");
+  //###############
   webpage += "<script type=\"text/javascript\"> google.setOnLoadCallback(drawChart);";
   webpage += "function drawChart() {";
    webpage += "var data = google.visualization.arrayToDataTable(";
@@ -327,8 +327,11 @@ void display_dial (){ // Processes a clients request for a dial-view of the data
   log_delete_approved = false; // PRevent accidental SD-Card deletion
   webpage = ""; // don't delete this command, it ensures the server works reliably!
   append_page_header();
-  webpage += "<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['gauge']}]}\"></script>";
-  webpage += "<script type=\"text/javascript\">";
+  //############### New API call needed
+  webpage += "<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>";
+  webpage += "<script type='text/javascript'>";
+  webpage += "google.charts.load('current', {'packages':['gauge']});";
+  //###############
   webpage += "var temp=" + String(dht_temp/10,2) + ",humi=" + String(dht_humi/10,1) + ";";
   // https://developers.google.com/chart/interactive/docs/gallery/gauge
   webpage += "google.load('visualization','1',{packages: ['gauge']});";
