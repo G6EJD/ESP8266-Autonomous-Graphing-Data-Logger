@@ -336,8 +336,10 @@ void display_dial (){ // Processes a clients request for a dial-view of the data
   webpage += "gaugehumi.draw(gaugehumiData,gaugehumiOptions);};";
   webpage += "</script>";
   webpage += "<meta name=\"viewport\" content=\"width=1020px, initial-scale=1.0, user-scalable=yes\">";
-  webpage += "<div id='gaugetemp_div' style='width:350px; height:350px;'></div>";
-  webpage += "<div id='gaugehumi_div' style='width:350px; height:350px;'></div>";
+  webpage += "<div class='row'>";
+  webpage += "<div class='column' id='gaugetemp_div' style='width:350px; height:350px;'></div>";
+  webpage += "<div class='column' id='gaugehumi_div' style='width:350px; height:350px;'></div>";
+  webpage += "</div>";
   append_page_footer();
   server.send(200, "text/html", webpage);
   webpage = "";
@@ -530,9 +532,11 @@ void append_page_header() {
   if (AUpdate) webpage += "<meta http-equiv='refresh' content='30'>"; // 30-sec refresh time, test needed to prevent auto updates repeating some commands
   webpage += "<title>SHT30D Sensor Readings</title><style>";
   webpage += "body {width:1020px;margin:0 auto;font-family:arial;font-size:14px;text-align:center;color:blue;background-color:#F7F2Fd;}";
+  webpage += "* {box-sizing:border-box;}";
+  webpage += ".column {float:left;width:33.33%;padding:5px;}";
+  webpage += ".row::after {content:'';clear:both;display:table;}";
   webpage += "</style></head><body><h1>Autonomous Graphing Data Logger " + version + "</h1>";
 }
-
 
 void append_page_footer(){ // Saves repeating many lines of code for HTML page footers
   webpage += "<head><style>ul{list-style-type:none;margin:0;padding:0;overflow:hidden;background-color:#d8d8d8;font-size:14px;}";
