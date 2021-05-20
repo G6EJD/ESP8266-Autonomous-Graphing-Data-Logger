@@ -262,7 +262,7 @@ void display_temp_and_humidity() { // Processes a clients request for a graph of
     webpage += "series:{0:{targetAxisIndex:0},1:{targetAxisIndex:1},},curveType:'none'};";
     webpage += "var chart = new google.visualization.LineChart(document.getElementById('line_chart'));chart.draw(data, options);";
   webpage += "}";
-  webpage += "</script>";
+  webpage += "</script></script>";
   //webpage += "<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=yes'>";
   webpage += "<div id=\"line_chart\" style=\"width:1020px; height:500px\"></div>";
 //-----------------------------------
@@ -310,7 +310,7 @@ void display_temp_and_dewpoint() { // Processes a clients request for a graph of
     webpage += "series:{0:{targetAxisIndex:0},1:{targetAxisIndex:0},},curveType:'none'};";
     webpage += "var chart = new google.visualization.LineChart(document.getElementById('line_chart'));chart.draw(data, options);";
   webpage += "}";
-  webpage += "</script>";
+  webpage += "</script></script>";
   //webpage += "<meta name='viewport' content='width=device-width,initial-scale=1.0,user-scalable=yes'>";
   webpage += "<div id=\"line_chart\" style=\"width:1020px; height:500px\"></div>";
 //-----------------------------------
