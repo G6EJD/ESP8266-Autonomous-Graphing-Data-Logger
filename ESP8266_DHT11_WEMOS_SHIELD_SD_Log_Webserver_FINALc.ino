@@ -231,14 +231,14 @@ void display_temp_and_humidity() { // Processes a clients request for a graph of
   log_delete_approved = false; // Prevent accidental SD-Card deletion
   webpage = ""; // don't delete this command, it ensures the server works reliably!
   append_page_header();
-  //############### New API call needed
-  webpage += F("<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}/\"></script>");
-  webpage += F("<script type=\"text/javascript\">");
+  // ## API Updated section ############
+  webpage += F("<script type='text/javascript' src='https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}/''></script>");
+  webpage += F("<script type='text/javascript'>");
   webpage += F("google.charts.load('current', {packages: ['corechart', 'line']});");
-  //###############
-  webpage += "<script type=\"text/javascript\"> google.setOnLoadCallback(drawChart);";
+  webpage += F("google.setOnLoadCallback(drawChart);");
   webpage += "function drawChart() {";
-   webpage += "var data = google.visualization.arrayToDataTable(";
+  webpage += "var data = google.visualization.arrayToDataTable(";
+  // ###################################
    webpage += "[['Reading','Temperature','Humidity'],";    
    for (int i = 0; i <= index_ptr; i=i+2) {
      webpage += "[" + String(i) + "," + String(float(sensor_data[i].temp)/10,1) + "," + String(float(sensor_data[i].humi)/1000,2) + "],"; 
@@ -282,14 +282,14 @@ void display_temp_and_dewpoint() { // Processes a clients request for a graph of
   log_delete_approved = false; // PRevent accidental SD-Card deletion
   webpage = ""; // don't delete this command, it ensures the server works reliably!
   append_page_header();
-  //############### New API call needed
-  webpage += F("<script type=\"text/javascript\" src=\"https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}/\"></script>");
-  webpage += F("<script type=\"text/javascript\">");
+  // ## API Updated section ############
+  webpage += F("<script type='text/javascript' src='https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}/''></script>");
+  webpage += F("<script type='text/javascript'>");
   webpage += F("google.charts.load('current', {packages: ['corechart', 'line']});");
-  //###############
-  webpage += "<script type=\"text/javascript\"> google.setOnLoadCallback(drawChart);";
+  webpage += F("google.setOnLoadCallback(drawChart);");
   webpage += "function drawChart() {";
-   webpage += "var data = google.visualization.arrayToDataTable(";
+  webpage += "var data = google.visualization.arrayToDataTable(";
+  // ###################################
    webpage += "[['Reading','Temperature','Dew Point'],";    
    for (int i = 0; i <= index_ptr; i=i+2) {
      if isnan(Calc_DewPoint(sensor_data[i].temp/10,sensor_data[i].humi/10)) dew_point = 0; else dew_point = Calc_DewPoint(sensor_data[i].temp/10,sensor_data[i].humi/10);
